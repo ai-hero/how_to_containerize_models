@@ -1,0 +1,2 @@
+#!/bin/bash
+pm2 start mq.py --name zero_shot_mq --interpreter python3 --no-daemon

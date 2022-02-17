@@ -1,0 +1,12 @@
+{
+    "type": "object",
+    "properties": {
+        "text": {"type": "string", "minLength": 1, "maxLength": 1000},
+        "candidate_labels": {
+            "type": "array",
+            "items": {"type": "string", "minLength": 1, "maxLength": 50},
+            "minItems": 1
+        }
+    },
+    "required": ["text", "candidate_labels"]
+}
