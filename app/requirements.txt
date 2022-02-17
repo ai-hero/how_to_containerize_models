@@ -1,11 +1,17 @@
-celery[redis]
+# Model related
+torch
+transformers
+
+# app related
+pylint
+pytest
+
+# HTTP endpoint related
 flask
 flask-cors
 flask-expects-json
 gevent
 gunicorn
-pylint
-pytest
+
+# Message Queue related
 redis
-torch
-transformers

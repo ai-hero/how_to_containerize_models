@@ -4,7 +4,7 @@ set -e
 if [ "$#" -eq 0 ] ; 
 then
   echo "Entrypoint did not receive a command."
-  echo "Should be one of 'serve','test'."
+  echo "Should be one of 'serve', 'test', 'start_mq."
   exit 1
 fi
 
@@ -15,6 +15,9 @@ then
 elif [ "$1" = "test" ]  
 then
   ./test
+elif [ "$1" = "start_mq" ]  
+then
+  ./start_mq
 else
   echo "Entrypoint received invalid command."
   exit 1

@@ -23,6 +23,27 @@ services:
     networks:
       - ai-hero-internal
 
+  zero_shot_mq:
+    <<: *base
+    container_name: zero_shot_mq
+    env_file: 
+      - .env
+    depends_on:
+      - redis
+    user: user
+    command: "start_mq"
+    networks:
+      - ai-hero-internal
+
+  redis:
+    image: redis:alpine
+    container_name: redis
+    command: ["redis-server", "--appendonly", "yes"]
+    hostname: redis
+    ports:
+      - 6379:6379
+    networks:
+      - ai-hero-internal
 
 networks:
   ai-hero-internal:

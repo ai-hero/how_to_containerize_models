@@ -1,4 +1,5 @@
-# This file implements the flask endpoints fort the model endpoints.
+# This file implements the flask endpoints for the model endpoints.
+import json
 from flask import Flask, jsonify, g
 from flask_cors import CORS
 from flask_expects_json import expects_json
@@ -12,18 +13,8 @@ app.config["JSONIFY_PRETTYPRINT_REGULAR"] = True
 CORS(app)
 
 # Expected JSON Schema of the predict request
-SCHEMA = {
-    "type": "object",
-    "properties": {
-        "text": {"type": "string", "minLength": 1, "maxLength": 1000},
-        "candidate_labels": {
-            "type": "array",
-            "items": {"type": "string", "minLength": 1, "maxLength": 50},
-            "minItems": 1,
-        },
-    },
-    "required": ["text", "candidate_labels"],
-}
+with open("schema.json", "r") as f:
+    SCHEMA = json.loads(f.read())
 
 
 @app.errorhandler(HTTPException)
@@ -81,10 +72,11 @@ def predict():
     if len(candidate_labels) > 5:
         raise UnprocessableEntity("This API allows for upto 5 classes.")
 
-    # Get the predictions.
+    # Get the prediction.
     # Note: You can add additional logic here as well, e.g. database look up, etc.
-    predictions = ZeroShotTextClassifier.predict(
+    prediction = ZeroShotTextClassifier.predict(
         text=text,
         candidate_labels=candidate_labels,
     )
-    return jsonify(predictions)
+
+    return jsonify(prediction)

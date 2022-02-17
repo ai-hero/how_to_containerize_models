@@ -1,3 +1,4 @@
+import sys
 from transformers import pipeline
 from typing import List
 import numpy as np
@@ -5,7 +6,8 @@ from time import perf_counter
 import logging
 
 # Set up logger
-LOG = logging.getLogger("gunicorn.error")
+logging.basicConfig(stream=sys.stdout, level=logging.INFO)
+log = logging.getLogger(__name__)
 
 
 class ZeroShotTextClassifier:
@@ -30,7 +32,7 @@ class ZeroShotTextClassifier:
                 "zero-shot-classification", model="facebook/bart-large-mnli"
             )
             elapsed = 1000 * (perf_counter() - t0)
-            LOG.info("Model warm-up time: %d ms.", elapsed)
+            log.info("Model warm-up time: %d ms.", elapsed)
 
     @classmethod
     def predict(cls, text: str, candidate_labels: List[str]):
@@ -47,7 +49,7 @@ class ZeroShotTextClassifier:
         # pylint: disable-next=not-callable
         huggingface_predictions = cls.classifier(text, candidate_labels)
         elapsed = 1000 * (perf_counter() - t0)
-        LOG.info("Model prediction time: %d ms.", elapsed)
+        log.info("Model prediction time: %d ms.", elapsed)
 
         # Create the custom prediction object.
         max_index = np.argmax(huggingface_predictions["scores"])
