@@ -1,0 +1,28 @@
+version: "3"
+
+services:
+  base: &base
+    build: .
+
+  test: 
+    <<: *base
+    command: "test"
+
+  zero_shot:
+    <<: *base
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health_check"]
+      interval: 5s
+      timeout: 30s
+      retries: 5
+    user: user
+    command: "serve"
+    ports:
+      - 8080:8080
+    networks:
+      - ai-hero-internal
+
+
+networks:
+  ai-hero-internal:
+    external: true

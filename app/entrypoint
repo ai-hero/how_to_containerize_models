@@ -1,0 +1,21 @@
+#!/bin/bash
+set -e 
+
+if [ "$#" -eq 0 ] ; 
+then
+  echo "Entrypoint did not receive a command."
+  echo "Should be one of 'serve','test'."
+  exit 1
+fi
+
+echo "Entrypoint received command: $1"
+if [ "$1" = "serve" ] 
+then
+  ./serve
+elif [ "$1" = "test" ]  
+then
+  ./test
+else
+  echo "Entrypoint received invalid command."
+  exit 1
+fi

@@ -1,0 +1,11 @@
+celery[redis]
+flask
+flask-cors
+flask-expects-json
+gevent
+gunicorn
+pylint
+pytest
+redis
+torch
+transformers
