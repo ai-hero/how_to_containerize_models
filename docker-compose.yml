@@ -10,6 +10,7 @@ services:
 
   zero_shot:
     <<: *base
+    container_name: zero_shot
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/health_check"]
       interval: 5s

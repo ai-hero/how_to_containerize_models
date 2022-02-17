@@ -8,6 +8,7 @@ from helpers.zero_shot_text_classifier import ZeroShotTextClassifier
 
 # The flask api for serving predictions
 app = Flask(__name__)
+app.config["JSONIFY_PRETTYPRINT_REGULAR"] = True
 CORS(app)
 
 # Expected JSON Schema of the predict request
@@ -18,6 +19,7 @@ SCHEMA = {
         "candidate_labels": {
             "type": "array",
             "items": {"type": "string", "minLength": 1, "maxLength": 50},
+            "minItems": 1,
         },
     },
     "required": ["text", "candidate_labels"],

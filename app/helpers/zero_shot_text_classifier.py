@@ -34,6 +34,8 @@ class ZeroShotTextClassifier:
 
     @classmethod
     def predict(cls, text: str, candidate_labels: List[str]):
+        assert len(candidate_labels) > 0
+
         # Make sure the model is loaded
         cls.load()
 
