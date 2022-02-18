@@ -18,6 +18,9 @@ then
 elif [ "$1" = "start_mq" ]  
 then
   ./start_mq
+elif [ "$1" = "batch_process" ]  
+then
+  ./batch_process "$2" "$3" "$4"
 else
   echo "Entrypoint received invalid command."
   exit 1

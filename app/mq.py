@@ -29,7 +29,7 @@ def predict(request_obj: dict):
 
     # You can add additional checks here, e.g. max number of classes, etc.
     if len(candidate_labels) > 5:
-        raise Exception("This API allows for upto 5 classes.")
+        raise Exception("This service allows for upto 5 classes.")
 
     # Get the predictions.
     # Note: You can add additional logic here as well, e.g. database look up, etc.

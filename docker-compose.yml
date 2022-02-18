@@ -23,6 +23,7 @@ services:
     networks:
       - ai-hero-internal
 
+
   zero_shot_mq:
     <<: *base
     container_name: zero_shot_mq
@@ -35,6 +36,7 @@ services:
     networks:
       - ai-hero-internal
 
+
   redis:
     image: redis:alpine
     container_name: redis
@@ -42,6 +44,16 @@ services:
     hostname: redis
     ports:
       - 6379:6379
+    networks:
+      - ai-hero-internal
+
+  zero_shot_batch:
+    <<: *base
+    container_name: zero_shot_batch
+    user: user
+    command: "batch_process /home/user/app/data/labels.txt /home/user/app/data/batch_inputs.csv /home/user/app/data/batch_outputs.csv"
+    volumes:
+      - ./examples:/home/user/app/data
     networks:
       - ai-hero-internal
 

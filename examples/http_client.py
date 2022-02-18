@@ -1,12 +1,11 @@
 # This file implements the message queue for the model endpoints.
 import os
 import sys
-import json
 import logging
 import requests
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv("dev.env")
 
 # Set up logger
 logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
@@ -18,7 +17,7 @@ def get_a_prediction():
     server_url = os.environ.get("SERVER_URL")
 
     # Send predict request
-    log.info("Makinga a predict request:")
+    log.info("Making a predict request:")
     request_obj = {
         "text": "I am feeling great!",
         "candidate_labels": ["sad", "happy"],

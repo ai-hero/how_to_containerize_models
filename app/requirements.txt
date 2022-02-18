@@ -15,3 +15,7 @@ gunicorn
 
 # Message Queue related
 redis
+
+# Batch Processing with file 
+pandas
+tqdm

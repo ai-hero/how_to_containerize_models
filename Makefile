@@ -10,6 +10,9 @@ serve:
 start_mq: 
 	docker-compose up --detach --build zero_shot_mq
 	
+batch_process: 
+	docker-compose up --build zero_shot_batch
+
 test: 
 	docker-compose build && docker-compose run test
 

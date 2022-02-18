@@ -5,9 +5,8 @@ import json
 import redis
 import logging
 from dotenv import load_dotenv
-from uuid import uuid4
 
-load_dotenv()
+load_dotenv("dev.env")
 
 # Set up logger
 logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
@@ -23,4 +22,5 @@ def consumer():
     # Get response
     log.info("Waiting for predict response message...")
     _, msg = redis_connection.blpop(predict_response_topic)
-    log.info("Prediction: %s", json.loads(msg))
+    prediction = json.loads(msg)
+    log.info("Prediction: %s", prediction)

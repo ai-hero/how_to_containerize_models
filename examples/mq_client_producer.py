@@ -7,7 +7,7 @@ import logging
 from dotenv import load_dotenv
 from uuid import uuid4
 
-load_dotenv()
+load_dotenv("dev.env")
 
 # Set up logger
 logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
