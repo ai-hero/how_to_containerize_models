@@ -1,0 +1,2 @@
+#!/bin/bash
+python batch.py -l "$1" -i "$2" -o "$3" 
