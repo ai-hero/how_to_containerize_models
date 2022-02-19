@@ -1,6 +1,16 @@
 # 3 ways to containerize your ML models.
 
-A basic container to serve models in 3 ways - REST, message queues, and batch processing.
+This repo is companion code to the article [Deploying ML Models Using Containers in Three Ways](https://medium.com/@rparundekar/deploying-ml-models-using-containers-in-three-ways-14745af94043) I've published on Medium. They both go together. :)
+
+The repo contains code for a basic container to serve ML models in 3 ways - REST, message queues, and batch processing.
+
+## How to run the code.
+
+I've tried my best to document stuff below. But if in doubt, start from the `Makefile`, and "follow the white rabbit".
+
+## Pre-requisites
+
+You'll need docker and docker-compose installed on your machine to use this. Also, don't forget to increase the memory and disk space allocated to it from docker preferences.
 
 # Serving the model using an HTTP endpoint
 
